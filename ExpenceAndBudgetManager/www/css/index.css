@@ -1,5 +1,25 @@
+html {
+    min-height: 100%;
+}
+
 body {
-    margin-top: 20px;
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    background-image: linear-gradient(to bottom, #A7A7A7, #E4E4E4);
+    -ms-background-size: cover;
+    background-size: cover;
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    min-height: 100%;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 20px;
+    text-transform: uppercase;
+    width: 100%;
+    background-color: #32383d;
+    font-family: 'RobotoRegular', 'Droid Sans', 'Segoe UI', Segoe, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+    font-size: 12px;
 }
 /** {
     -webkit-tap-highlight-color: rgba(0,0,0,0);

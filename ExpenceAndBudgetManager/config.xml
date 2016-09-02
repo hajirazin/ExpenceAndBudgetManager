@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp03181a" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
-  <name>Expence Manger</name>
+  <name>Expence Manager</name>
   <description>Budget traking</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Aksha Memon</author>
   <content src="index.html" />
@@ -107,4 +107,7 @@
     <splash src="res/screens/wp8/SplashScreenImage.png" width="768" height="1280" />
   </platform>
   <plugin name="cordova-plugin-network-information" version="1.2.1" />
+  <access origin="http://budgetforaksha.azurewebsites.net/" />
+  <preference name="AndroidLaunchMode" value="singleInstance" />
+  <preference name="Fullscreen" value="True" />
 </widget>

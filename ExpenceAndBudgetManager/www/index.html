@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html ng-app="BudgetManager">
+<html ng-app="BudgetManager" ng-cloak>
 <head>
     <!--
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com http://budgetforaksha.azurewebsites.net 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
 
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="lib/angular-material/angular-material.css" rel="stylesheet" />
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-    <script src="lib/jquery/dist/jquery.min.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/angular-aria/angular-aria.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-messages/angular-messages.js"></script>
+    <script src="lib/angular-material/angular-material.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
     <script src="scripts/app.js"></script>
     <title>Expence Manager</title>
@@ -40,18 +46,24 @@
             </div>
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button type="submit" class="btn btn-default" ng-click="Save()">Save</button>
+                    <button type="submit" class="btn btn-success" ng-click="Save()">Save</button>
                 </div>
             </div>
         </form>
+        <md-divider></md-divider>
+        <div class="row" style="color: red">
+            <div class="col-xs-6"> Aj jo kharch : <span ng-bind="TodayTotal">0</span></div>
+            <div class="col-xs-6"> Mahine jo : <span ng-bind="ThisMonthTotal">0</span></div>
+        </div>
+        <md-divider></md-divider>
         <div class="row">
             <div class="col-xs-8"> Description</div>
             <div class="col-xs-4"> Amount</div>
         </div>
-        <div class="row" ng-repeat="obj in details">
+        <div class="row" md-swipe-left="onSwipeLeft()" ng-repeat="obj in details" ng-show="details.length">
             <div class="col-xs-8"> <span ng-bind="obj.Description"></span></div>
             <div class="col-xs-2"> <span ng-bind="obj.Amount"></span></div>
-            <div class="col-xs-2" ng-click="Remove(obj.Description)">X</div>
+            <div class="col-xs-2"><button class="btn btn-danger" ng-click="Remove(obj)">X</button></div>
         </div>
     </div>
 </body>
