@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html ng-app="DR" ng-cloak>
+<head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com http://budgetforaksha.azurewebsites.net 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <link href="lib/angular-material/angular-material.css" rel="stylesheet" />
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/angular-aria/angular-aria.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-messages/angular-messages.js"></script>
+    <script src="lib/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script src="scripts/daillyreport.js"></script>
+    <title>Expence Manager</title>
+</head>
+<body ng-controller="DRC">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               <a href="index.html" class="navbar-brand">Aksha</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Add new</a></li>
+                    <li><a href="datewise.html">Date wise</a></li>
+                    <li><a href="daillyreport.html">Daily report</a></li>
+                    <li><a href="monthlyreport.html">Monthly report</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="row" style="font-size: 12px; font-weight: bold;">
+            <div class="col-xs-8"> Date</div>
+            <div class="col-xs-4" style="text-align: center;"> Amount</div>
+        </div>
+        <md-divider></md-divider>
+        <div class="row" style="font-size: 12px;" ng-repeat="obj in details" ng-show="details.length">
+            <div class="col-xs-8" style="padding: 10px;"> <span ng-bind="obj.Day"></span></div>
+            <div class="col-xs-4" style="text-align: center; padding: 10px;"> <span ng-bind="obj.Total"></span></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Data.Entity.SqlServer;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -84,18 +86,24 @@ namespace ExpenceAndBudgetManager.Web.Controllers
         [Route("")]
         public IHttpActionResult GetForToday()
         {
+            return GetByDate(DateTime.UtcNow.Date);
+        }
+
+        [HttpGet]
+        [Route("{date}")]
+        public IHttpActionResult GetByDate(DateTime date)
+        {
             try
             {
                 using (var e = new ExpenseTrackerTestDBEntities())
                 {
-                    var today = DateTime.UtcNow.Date;
-                    var todayMonth = DateTime.UtcNow.Month;
+                    var dateMonth = date.Month;
                     decimal monthCount = 0;
-                    var monthQuery = e.Expenses.Where(ex => ex.Date.Month == todayMonth).Select(s => s.Amount);
+                    var monthQuery = e.Expenses.Where(ex => ex.Date.Month == dateMonth).Select(s => s.Amount);
                     if (monthQuery.Any())
                         monthCount = monthQuery.Sum();
                     var list =
-                        e.Expenses.Where(ex => DbFunctions.TruncateTime(ex.Date) == today)
+                        e.Expenses.Where(ex => DbFunctions.TruncateTime(ex.Date) == date)
                             .ToList()
                             .Select(s => new Expense
                             {
@@ -118,7 +126,48 @@ namespace ExpenceAndBudgetManager.Web.Controllers
             }
         }
 
-        private string GetMessage(Exception exception)
+        [Route("Dailly")]
+        public IHttpActionResult GetDailyReport()
+        {
+            try
+            {
+                using (var e = new ExpenseTrackerTestDBEntities())
+                {
+                    var res =
+                        e.Expenses.GroupBy(ex => DbFunctions.TruncateTime(ex.Date))
+                            .Select(ex => new { Day = ex.Key, Total = ex.Sum(s => s.Amount) })
+                            .ToList().ConvertAll(c => new { Day = c.Day.Value.ToString("D"), c.Total });
+                    return Ok(res);
+                }
+            }
+            catch (Exception exception)
+            {
+                return Ok("Azure me kik problem aay. " + GetMessage(exception));
+            }
+        }
+
+        [Route("Monthly")]
+        public IHttpActionResult GetMonthlyReport()
+        {
+            try
+            {
+                using (var e = new ExpenseTrackerTestDBEntities())
+                {
+                    var res =
+                        e.Expenses.GroupBy(ex => ex.Date.Month)
+                            .Select(ex => new { Month = ex.Key, Total = ex.Sum(s => s.Amount) })
+                            .ToList();
+
+                    return Ok(res);
+                }
+            }
+            catch (Exception exception)
+            {
+                return Ok("Azure me kik problem aay. " + GetMessage(exception));
+            }
+        }
+
+        private static string GetMessage(Exception exception)
         {
             var s = new List<string>();
             while (exception != null)

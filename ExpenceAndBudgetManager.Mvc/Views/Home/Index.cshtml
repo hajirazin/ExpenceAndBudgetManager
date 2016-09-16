@@ -1,0 +1,41 @@
+﻿<div ng-controller="Reminder">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="Description" class="col-xs-4 control-label">Description :</label>
+            <div class="col-xs-8">
+                <input type="text" ng-model="Description" class="form-control" tabindex="1" id="Description" placeholder="Description">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Amount" class="col-xs-4 control-label">Amount :</label>
+            <div class="col-xs-8">
+                <input type="number" maxlength="5" ng-model="Amount" tabindex="2" class="form-control" id="Amount" placeholder="Amount">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-4 col-xs-8">
+                <button type="button" id="Save" tabindex="3" class="btn btn-success" ng-click="Save()">Save</button>
+            </div>
+        </div>
+    </form>
+    <md-divider></md-divider>
+    <div class="row" style="color: red; font-size: 12px;">
+        <div class="col-xs-6"> Aj jo kharch : <span ng-bind="TodayTotal">0</span></div>
+        <div class="col-xs-6"> Mahine jo : <span ng-bind="ThisMonthTotal">0</span></div>
+    </div>
+    <md-divider></md-divider>
+    <div class="row" style="font-size: 12px; font-weight: bold;">
+        <div class="col-xs-8"> Description</div>
+        <div class="col-xs-4" style="text-align: center;"> Amount</div>
+    </div>
+    <md-divider></md-divider>
+    <div class="row Data-Wrapper" style="height: 250px; overflow-x: hidden; overflow-y: auto;">
+        <div class="col-xs-12">
+            <div class="row" style="font-size: 12px;" md-swipe-left="Remove(obj)" md-swipe-right="Remove(obj)" ng-repeat="obj in details" ng-show="details.length">
+                <div class="col-xs-8" style="padding: 10px;"> <span ng-bind="obj.Description"></span></div>
+                <div class="col-xs-4" style="text-align: center; padding: 10px;"> <span ng-bind="obj.Amount"></span></div>
+            </div>
+        </div>
+    </div>
+
+</div>

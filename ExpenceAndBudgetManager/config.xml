@@ -110,4 +110,6 @@
   <access origin="http://budgetforaksha.azurewebsites.net/" />
   <preference name="AndroidLaunchMode" value="singleInstance" />
   <preference name="Fullscreen" value="True" />
+  <plugin name="org.apache.cordova.speech.speechrecognition" version="0.1.1" src="https://github.com/macdonst/SpeechRecognitionPlugin" />
+  <plugin name="cordova-plugin-compat" version="1.0.0" />
 </widget>

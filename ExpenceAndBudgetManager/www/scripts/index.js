@@ -11,18 +11,13 @@
         // Handle the Cordova pause and resume events
         document.addEventListener('pause', onPause.bind(this), false);
         document.addEventListener('resume', onResume.bind(this), false);
-        $(function () {
-            angular.element("body").scope().getData();
-        });
     };
 
     function onPause() {
-        window.details = angular.element("body").scope().details;
-        window.desc = angular.element("body").scope().desc;
+        
     };
 
     function onResume() {
-        angular.element("body").scope().details = window.details;
-        angular.element("body").scope().desc = window.desc;
+        
     };
 })();
