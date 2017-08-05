@@ -217,6 +217,7 @@
     <Content Include="Model\ExpenseEntity.edmx.diagram">
       <DependentUpon>ExpenseEntity.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\budgetforaksha - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\budgetforaksha - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

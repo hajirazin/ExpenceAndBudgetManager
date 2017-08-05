@@ -15,7 +15,7 @@
 
         $http({
             method: "POST",
-            url: "http://budgetforaksha.azurewebsites.net/api/Expense/Add?amount=" + $scope.Amount + "&description=" + $scope.Description
+            url: "http://localhost:10577/api/Expense/Add?amount=" + $scope.Amount + "&description=" + $scope.Description
         }).success(function (data) {
             if (typeof data == "string")
                 alert(data);
@@ -29,6 +29,7 @@
                 $("#Description").focus();
             }
         }).error(function () {
+            debugger;
             alert("Kik error aay, application me");
         });
     };
